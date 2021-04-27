@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ylidar viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+        function lv_init() {
+            var socket = io.connect('http://'+document.domain+':'+location.port);
+            socket.on('connect', function(msg){
+                socket.emit('my event',{data: 'client conected!'});
+            })
+        }
+    </script>
+</head>
+<body onload="javascript:lv_init()">
+    <h1>Ylidar viewer</h1>
+</body>
+</html>
