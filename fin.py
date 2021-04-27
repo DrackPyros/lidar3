@@ -36,8 +36,8 @@ if(Obj.Connect()):
         if (time.time() - t_save) >= interval*3600: #save 1 mins
             now = datetime.now()
             h_fin = now.strftime("%H:%M:%S")
-            archivo = h_inicio + ' - ' + h_fin+'.csv'
-            print(archivo)
+            archivo = "files/"+h_inicio + ' - ' + h_fin+'.csv'
+            # print(archivo)
             df.to_csv(archivo, index=False, mode="a")
             df = pd.DataFrame(dtype=int)
             t_save = time.time()

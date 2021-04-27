@@ -10,8 +10,13 @@ Voy a detallar los pasos para realizar la instalación de la unidad lidar en nue
 2. Instalar el paquete Lidar3 desde su repositorio de GitHub.
     > pip install PyLidar3
 
-3. Instalar la libreria matplot.
-    > pip install matplotlib
+3. Instalar la librerias 
+    - Matplot:
+        > pip install matplotlib
+    - Pandas:
+        > pip install matplotlib
+    - Libatlas:
+        > sudo apt instal libatlas-base-dev
 
 4. Añadir el usuario al grup tty y dialout.
     > sudo chmod tty dialout usuario
