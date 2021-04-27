@@ -38,7 +38,11 @@ Nota: En el script que nos proporciona el repositorio, hay que cambiar la linea 
 Aunque el sistema no cuente con este puerto de manera natural, este se creará y se enlazará en cuanto se ejecute el script.
 
 ## Uso
+Ejecutas el script y el lidar hará un intento de funcionar, pueden pasar 2 cosas:
 
+- En caso de que todo vaya bien, parará e imprimirá por consola la información del mismo y comenzará a funcionar otra vez.
+
+- Si va mal, imprimirá por consola "Error connecting to device" y la solución que hemos encontrado ha sido desconectar fisicamente el puerto USB  y volverlo a conectar. **Funciona 1 de cada 2 veces**
 
 ## Links
 1. Repositorio de PyLidar3: https://github.com/lakshmanmallidi/PyLidar3
