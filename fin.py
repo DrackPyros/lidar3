@@ -23,7 +23,7 @@ if(Obj.Connect()):
     s = time.time() # Saving check
 
     now = datetime.now()
-    t_start = now.strftime("%d\\%m\\%Y %H:%M:%S")
+    t_start = now.strftime("%d_%m_%Y_%H:%M:%S")
 
     while (time.time() - t) < t_alive*3600:
         data = next(gen)
