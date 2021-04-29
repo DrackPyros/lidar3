@@ -42,8 +42,8 @@
 # print(type(archivo))
 
 # print(now())
+# -----------------------------------------------------------
 
-#-----------------------------------------------------------------
 import numpy as np
 import pandas as pd
 import os
@@ -55,13 +55,12 @@ data = pd.read_csv(filename)
 
 # x = [20000, 20000, data.shape[0]]
 
-matriz = np.zeros(shape=[2000, 2000, data.shape[0]], dtype=float, order='C')
+matrix = np.zeros(shape=[2000, 2000, data.shape[0]], dtype=float, order='C')
 for index, row in data.iterrows():
     for angle, value in enumerate(row[:-1]):
         x = int(value * math.cos(math.radians(angle))//10)+1000
         y = int(value * math.sin(math.radians(angle))//10)+1000
+        matrix[y, x, index] = 1
         # print(x, y)
-        matriz[y, x, index] = 1
-    exit()
-# print(matriz)
-
+    # exit()
+print(matrix)

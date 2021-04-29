@@ -23,7 +23,7 @@ if(Obj.Connect()):
     s = time.time() # Saving check
 
     now = datetime.now()
-    t_start = now.strftime("%d_%m_%Y_%H:%M:%S")
+    t_start = now.strftime("%Y_%m_%d_%H:%M:%S")
 
     while (time.time() - t) < t_alive*3600:
         data = next(gen)
@@ -36,7 +36,7 @@ if(Obj.Connect()):
         if (time.time() - s) >= t_save*3600:
             now = datetime.now()
             t_end = now.strftime("%H:%M:%S")
-            name = "files/"+t_start + ' - ' + t_end+'.csv' # File path & name
+            name = "files/"+t_start + '-' + t_end+'.csv' # File path & name
             df.to_csv(name, index=False, mode="a")
             df = pd.DataFrame(dtype=int)
             s = time.time()
