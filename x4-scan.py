@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import math
 import _thread
+
 matplotlib.use("TkAgg")
 
 def plotting_thread(fig, axe, gen):

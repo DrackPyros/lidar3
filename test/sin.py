@@ -48,19 +48,56 @@ import numpy as np
 import pandas as pd
 import os
 import math
+import matplotlib.pyplot as plt
+import cv2 as cv
 
 filename = os.path.join("..", "files", "26_04_2021_13:09:15_13:09:51.csv")
 data = pd.read_csv(filename)
 
+def denoise(res):
+
+    # kernel = np.ones((5, 5), np.float32) / 25
+    result = np.zeros(res.shape)
+    # result = cv.fastNlMeansDenoising(res)
+    dst = cv.fastNlMeansDenoisingColored(res, None, 10, 10, 7, 21)
+    # plt.subplot(121), plt.imshow(matrix), plt.title('Original')
+    # plt.xticks([]), plt.yticks([])
+    # plt.subplot(122), plt.imshow(dst), plt.title('Averaging')
+    # plt.xticks([]), plt.yticks([])
+    return result
+
+def blur(matrix):
+
+    kernel = np.ones((5, 5), np.float32) / 25
+    dst = cv.filter2D(matrix, -1, kernel)
+    return dst
+
 
 # x = [20000, 20000, data.shape[0]]
 
-matrix = np.zeros(shape=[2000, 2000, data.shape[0]], dtype=float, order='C')
+matrix = np.zeros(shape=[1700, 1700, data.shape[0]], dtype=float, order='C')
+matrix.fill(255)
 for index, row in data.iterrows():
     for angle, value in enumerate(row[:-1]):
         x = int(value * math.cos(math.radians(angle))//10)+1000
         y = int(value * math.sin(math.radians(angle))//10)+1000
-        matrix[y, x, index] = 1
         # print(x, y)
-    # exit()
-print(matrix)
+        matrix[y, x, index] = 0
+
+    # plt.figure(1)
+    plt.subplot(221)
+    plt.imshow(matrix[:, :, index], vmin=0, vmax=255, cmap='gray')
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(222)
+    res = blur(matrix[:, :, index])
+    plt.imshow(res)
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(223)
+    res = blur(matrix[:, :, index])
+    plt.imshow(res)
+    plt.xticks([]), plt.yticks([])
+    res = denoise(res)
+    plt.imshow(res)
+    plt.show()
+    exit()
+# print(matrix)
